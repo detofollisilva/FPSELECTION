@@ -1,0 +1,355 @@
+/* ===========================
+   RESET E BASE
+=========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+/* ===========================
+   CABEÇALHO
+=========================== */
+header {
+    width: 90vw;
+    position: fixed;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 600px;
+    gap: 10%;
+    z-index: 20;
+}
+
+.logo {
+    width: 250px;
+}
+
+header nav ul {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    justify-content: end;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #00ffff;
+}
+
+/* ===========================
+   SEÇÃO PRINCIPAL
+=========================== */
+section {
+    background: radial-gradient(circle at top left, #4b00ff, #14006b);
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* ===========================
+   CONTAINER DOS ITENS
+=========================== */
+.list {
+    width: 90vw;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    border-top: 1.5px solid #ffffff;
+    opacity: 0.6;
+    z-index: 1;
+}
+
+/* ===========================
+   ITEM INDIVIDUAL
+=========================== */
+.item {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.item.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ===========================
+   CONTEÚDO DE TEXTO
+=========================== */
+.content {
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 20px;
+    z-index: 10;
+}
+
+.content h2 {
+    font-size: 5em;
+    line-height: 1em;
+    text-transform: uppercase;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.description {
+    color: whitesmoke;
+    font-size: 14px;
+    max-width: 400px;
+}
+
+.information {
+    border-radius: 30px;
+    height: 40px;
+    width: 140px;
+    text-transform: uppercase;
+    border: 2px solid rgb(0, 3, 138);
+    background-color: #bfff1b;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.information:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* ===========================
+   IMAGEM DO CARRO
+=========================== */
+.car-image {
+    position: absolute;
+    left: 39%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    width: 60%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.car-image img {
+    width: 100%;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
+    transition: transform 0.8s ease;
+}
+
+.item.active .car-image img {
+    transform: scale(1.05) rotate(-15deg); /* zoom suave no carro ativo */
+}
+
+/* ===========================
+   SETAS DE NAVEGAÇÃO
+=========================== */
+.arrows {
+    width: 90vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 15;
+}
+
+.arrows button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.arrows button:hover {
+    background-color: #bfff1b;
+}
+
+.arrows button img {
+    width: 25px;
+}
+
+.arrow-left {
+    transform: scaleX(-1);
+}
+
+/* ===========================
+   INDICADORES
+=========================== */
+.indicators {
+    position: absolute;
+    bottom: 80px;
+    width: 90vw;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    z-index: 10;
+}
+
+.numbers {
+    font-size: 3.5em;
+    font-weight: bold;
+    color: white;
+}
+
+.indicators ul {
+    display: flex;
+    gap: 10px;
+}
+
+.indicators ul li {
+    width: 50px;
+    height: 5px;
+    background-color: #bfff1b;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.indicators ul li.active {
+    background-color: #fff;
+}
+
+/* ===========================
+   ANIMAÇÕES DE TRANSIÇÃO
+=========================== */
+
+/* Entrada */
+@keyframes carEnterRight {
+    0% { opacity: 0; transform: translateX(100%) rotate(-15deg); }
+    70% { opacity: 1; transform: translateX(0) rotate(-15deg); }
+    100% { transform: translateX(0) rotate(-10deg); }
+}
+
+@keyframes carEnterLeft {
+    0% { opacity: 0; transform: translateX(-100%) rotate(-10deg); }
+    70% { opacity: 1; transform: translateX(0) rotate(-10deg); }
+    100% { transform: translateX(0) rotate(-15deg); }
+}
+
+/* Saída */
+@keyframes carExitLeft {
+    0% { opacity: 1; transform: translateX(0) rotate(-10deg); }
+    100% { opacity: 0; transform: translateX(-100%) rotate(-15deg); }
+}
+
+@keyframes carExitRight {
+    0% { opacity: 1; transform: translateX(0) rotate(-10deg); }
+    100% { opacity: 0; transform: translateX(100%) rotate(-15deg); }
+}
+
+/* Texto */
+@keyframes textEnter {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes textExit {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+
+/* Aplicação das animações */
+.item.enter-right .car-image img { animation: carEnterRight 1s ease forwards; }
+.item.enter-left  .car-image img { animation: carEnterLeft  1s ease forwards; }
+
+.item.exit-left  .car-image img { animation: carExitLeft  0.8s ease forwards; }
+.item.exit-right .car-image img { animation: carExitRight 0.8s ease forwards; }
+
+.item.enter-right .content,
+.item.enter-left  .content { animation: textEnter 0.8s ease forwards; }
+
+.item.exit-left .content,
+.item.exit-right .content { animation: textExit 0.5s ease forwards; }
+
+/* ===========================
+   RESPONSIVIDADE
+=========================== */
+@media (max-width: 1200px) {
+    .car-image { width: 70%; }
+    .content { right: 5%; width: 40%; }
+    .content h2 { font-size: 4.5em; }
+}
+
+@media (max-width: 900px) {
+    .content {
+        position: relative;
+        transform: none;
+        right: auto;
+        width: 80%;
+        align-items: center;
+        text-align: center;
+        margin-top: 30px;
+    }
+    .car-image {
+        width: 80%;
+        transform: translate(-50%, -40%) rotate(-10deg);
+    }
+    .content h2 {
+        font-size: 3.5em;
+    }
+}
+
+@media (max-width: 600px) {
+    .content {
+        width: 90%;
+        align-items: center;
+        text-align: center;
+    }
+    .car-image {
+        width: 95%;
+        transform: translate(-50%, -45%) rotate(-5deg);
+    }
+    .content h2 {
+        font-size: 2.5em;
+    }
+    .list::before { display: none; }
+}
